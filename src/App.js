@@ -1,12 +1,8 @@
-import './App.css';
-import React from 'react'
+import Body from './components/Body'
 
 const App = () => {
   return (
-    <div>
-      <h1 className='text-6xl font-bold text-blue-600 '>Hello Welcomes to the cineverse app </h1>
-      
-    </div>
+    <Body/>
   )
 }
 
