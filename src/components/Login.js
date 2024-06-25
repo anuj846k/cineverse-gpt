@@ -1,6 +1,5 @@
 import React from "react";
 import Header from "./Header";
-import { useNavigate } from "react-router-dom";
 import { useState, useRef } from "react";
 import { checkValidData } from "../utils/validate";
 import {
@@ -11,7 +10,7 @@ import {
 import { auth } from "../utils/firebase";
 import { useDispatch } from "react-redux";
 import { addUser } from "../utils/userSlice";
-
+import { User_Avatar } from "../utils/constant";
 const Login = () => {
   const dispatch = useDispatch();
   
@@ -19,7 +18,6 @@ const Login = () => {
 
   const [errorMessage, setErrorMessage] = useState("");
 
-  const navigate = useNavigate();
 
   const name = useRef(null);
   const email = useRef(null);
@@ -41,7 +39,7 @@ const Login = () => {
           const user = userCredential.user;
           updateProfile(user, {
             displayName: name.current.value,
-            photoURL: "https://avatars.githubusercontent.com/u/136173245?v=4",
+            photoURL:User_Avatar
           })
             .then(() => {
               const { uid, email, displayName, photoURL } = auth.currentUser;
@@ -53,8 +51,6 @@ const Login = () => {
                   photoURL: photoURL,
                 })
               );
-
-              navigate("/browse");
             })
             .catch((error) => {
               setErrorMessage(error.message);
@@ -78,8 +74,6 @@ const Login = () => {
         .then((userCredential) => {
           // Signed in
           const user = userCredential.user;
-          console.log(user);
-          navigate("/browse");
           // ...
         })
         .catch((error) => {
