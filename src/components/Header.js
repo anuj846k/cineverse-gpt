@@ -12,6 +12,8 @@ const Header = () => {
   const navigate = useNavigate();
   const user = useSelector((store) => store.user);
 
+  const showGptSearch = useSelector((store) => store.gpt.showGptSearch);
+
   const handleSignOut = () => {
     signOut(auth)
       .then(() => {
@@ -45,6 +47,7 @@ const Header = () => {
       }
     });
     return () => unsubscribe();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleGptSearch = () => {
@@ -55,26 +58,31 @@ const Header = () => {
     dispatch(changeLanguage(e.target.value));
   };
 
+
+
   return (
     <div className="absolute w-full px-8 py-2 bg-gradient-to-b from-black z-10 flex justify-between">
       <img className="w-80 py-2 mb-2" src="./download.png" alt="Logo" />
       {user && (
         <div className="flex items-center mb-10">
-          <select
-            className="py-3 px-2 rounded border-none bg-gray-900 text-white m-2"
-            onChange={handleLanguageChange}
-          >
-            {SUPPORTED_LANGAUGES.map((lang) => (
-              <option key={lang.identifers} value={lang.identifers}>
-                {lang.name}
-              </option>
-            ))}
-          </select>
+          {showGptSearch && (
+            <select
+              className="py-3 px-2 rounded border-none bg-gray-900 text-white m-2"
+              onChange={handleLanguageChange}
+            >
+              {SUPPORTED_LANGAUGES.map((lang) => (
+                <option key={lang.identifers} value={lang.identifers}>
+                  {lang.name}
+                </option>
+              ))}
+              
+            </select>
+          )}
           <button
             onClick={handleGptSearch}
             className="p-2 rounded-lg bg-orange-200 font-bold mx-4 m-2"
           >
-            GPT Search
+           {showGptSearch ? "Homepage" : "GPT Search"}
           </button>
           <img
             className="w-16 h-16 mr-3  rounded-full"
