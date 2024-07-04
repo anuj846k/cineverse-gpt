@@ -27,4 +27,4 @@ export const SUPPORTED_LANGAUGES = [
 
 
 
-// export const OPENAI_KEY ="openai key here";
+export const GEMINI_KEY ="Gemini Key Here";

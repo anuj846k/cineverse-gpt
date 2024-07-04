@@ -1,25 +1,42 @@
 import { useSelector } from "react-redux";
 import lang from "../utils/languageConstant";
 import { useRef } from "react";
-import openai from "../utils/Openai";
+import model from "../utils/Gemini";
+import { Api_options } from "../utils/constant";
 
 const GptSearchBar = () => {
   const langKey = useSelector((store) => store.config.language);
   const searchText = useRef(null);
 
+  const searchMovieTmdb = async (movie) => {
+    const data = await fetch(
+      "https://api.themoviedb.org/3/search/movie?query=" +
+        movie +
+        "&include_adult=false&language=en-US&page=1",
+      Api_options
+    );
+    const json = await data.json();
+    return json;
+  };
+
   const handleGptSearchClick = async () => {
     console.log(searchText.current?.value);
 
-    const gptQuery =
+    const prompt =
       "Act as movie Recommendation systems and suggest some movies for the query" +
       searchText.current.value +
-      ". only give me 5 name of movies,Commas separated like the example results given ahead .Example Result :Herramandi,Under paris,Fighter,The last dance,Mirzapur";
+      ". only give me 5 name of movies,Commas separated like the example results given ahead nothing more than 5 movies remember this .Example Result :Herramandi,Under paris,Fighter,The last dance,Mirzapur";
 
-    const gptResults = await openai.chat.completions.create({
-      messages: [{ role: "user", content: gptQuery }],
-      model: "gpt-3.5-turbo",
-    });
-    console.log(gptResults.choices);
+      const result = await model.generateContent(prompt);
+      const response = await result.response;
+      const text = response.text();
+      const GeminiMovies = text.split(',');
+      // console.log(GeminiMovies);
+
+      const promiseArray = GeminiMovies.map((movie) => searchMovieTmdb(movie));
+
+      const tmdbResults = await Promise.all(promiseArray);
+      console.log(tmdbResults);
   };
 
   return (
