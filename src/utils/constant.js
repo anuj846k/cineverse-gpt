@@ -7,11 +7,11 @@ export const Api_options = {
   headers: {
     accept: "application/json",
     Authorization:
-      "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI2ZGI2MWQxZmYyZDVmOGQ2NWJmYzc3N2QzM2Q2M2FlYSIsIm5iZiI6MTcxOTMyNTY3Ni40ODM0NDYsInN1YiI6IjY2N2FkMzE2ZmQ3MmNjZmRjZTVhMzU0MiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.uRfsnPF-F4GbQb-dw6DF1-dOVjKGash7YPLgkGwRgEQ",
+      "Bearer"+ process.env.REACT_APP_TMDB_KEY,
   },
 };
 
-// eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI2ZGI2MWQxZmYyZDVmOGQ2NWJmYzc3N2QzM2Q2M2FlYSIsIm5iZiI6MTcxOTMyNTY3Ni40ODM0NDYsInN1YiI6IjY2N2FkMzE2ZmQ3MmNjZmRjZTVhMzU0MiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.uRfsnPF-F4GbQb-dw6DF1-dOVjKGash7YPLgkGwRgEQ
+
 
 export const IMG_CDN_URL = "https://image.tmdb.org/t/p/w500";
 
@@ -27,4 +27,4 @@ export const SUPPORTED_LANGAUGES = [
 
 
 
-export const GEMINI_KEY ="Gemini Key Here";
+export const GEMINI_KEY = process.env.REACT_APP_GEMINI_KEY;

@@ -2,7 +2,6 @@ import React, { useRef } from "react";
 import MovieCard from "./MovieCard";
 import { IoIosArrowDropleftCircle, IoIosArrowDroprightCircle } from "react-icons/io";
 
-
 const MovieList = ({ title, movies }) => {
   const scrollContainerRef = useRef(null);
 
@@ -39,7 +38,7 @@ const MovieList = ({ title, movies }) => {
           ref={scrollContainerRef}
         >
           <div className="flex space-x-4">
-            {movies?.map((movie) => (
+            {Array.isArray(movies) && movies.map((movie) => (
               <MovieCard key={movie.id} posterPath={movie.poster_path} /> 
             ))}
           </div>

@@ -1,10 +1,12 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import lang from "../utils/languageConstant";
 import { useRef } from "react";
 import model from "../utils/Gemini";
 import { Api_options } from "../utils/constant";
+import { addGptMovieResult } from "../utils/gptSlice";
 
 const GptSearchBar = () => {
+  const disptach= useDispatch();
   const langKey = useSelector((store) => store.config.language);
   const searchText = useRef(null);
 
@@ -37,6 +39,8 @@ const GptSearchBar = () => {
 
       const tmdbResults = await Promise.all(promiseArray);
       console.log(tmdbResults);
+
+      disptach(addGptMovieResult({movieName:GeminiMovies,movieResults:tmdbResults}));
   };
 
   return (
