@@ -45,7 +45,7 @@ const MovieList = ({ title, movies }) => {
         </div>
         <button 
           onClick={scrollRight} 
-          className="absolute right-12 z-10"
+          className="absolute right-[60px] z-10"
         >
           <IoIosArrowDroprightCircle size={50} className="text-gray-300 hover:text-yellow-500" />
         </button>
