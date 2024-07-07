@@ -8,7 +8,7 @@ const MovieList = ({ title, movies }) => {
   const scrollLeft = () => {
     scrollContainerRef.current.scrollBy({
       top: 0,
-      left: -400,
+      left: -230,
       behavior: "smooth",
     });
   };
@@ -16,25 +16,25 @@ const MovieList = ({ title, movies }) => {
   const scrollRight = () => {
     scrollContainerRef.current.scrollBy({
       top: 0,
-      left: 400,
+      left: 230,
       behavior: "smooth",
     });
   };
 
   return (
     <div className="p-6">
-      <h1 className="font-semibold text-3xl mb-5 py-4 text-yellow-500">
+      <h1 className="font-semibold text-xl md:text-3xl mb-5 py-4 text-yellow-500 md:text-left">
         {title}
       </h1>
       <div className="relative flex items-center">
         <button 
           onClick={scrollLeft} 
-          className="absolute left-12"
+          className="absolute left-2 md:left-12 z-10"
         >
-          <IoIosArrowDropleftCircle size={50} className="text-gray-300 hover:text-yellow-500" />
+          <IoIosArrowDropleftCircle size={50} className="hidden md:block  text-gray-300 hover:text-yellow-500" />
         </button>
         <div
-          className="flex overflow-x-scroll no-scrollbar p-2 ml-20 mr-20 w-[90%]"
+          className="flex overflow-x-scroll no-scrollbar p-2 w-full"
           ref={scrollContainerRef}
         >
           <div className="flex space-x-4">
@@ -45,9 +45,9 @@ const MovieList = ({ title, movies }) => {
         </div>
         <button 
           onClick={scrollRight} 
-          className="absolute right-[60px] z-10"
+          className="absolute right-2 md:right-12 z-10"
         >
-          <IoIosArrowDroprightCircle size={50} className="text-gray-300 hover:text-yellow-500" />
+          <IoIosArrowDroprightCircle size={50} className="hidden md:block  text-gray-300 hover:text-yellow-500" />
         </button>
       </div>
     </div>
