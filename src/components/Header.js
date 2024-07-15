@@ -71,7 +71,7 @@ const Header = () => {
         <div className="flex items-center flex-row text-xs bg-blue-950 rounded-full md:rounded-full px-12  py-1  md:space-x-4 space-x-1 space-y-0 -mt-10 md:-mt-0 md:mb-10">
           {showGptSearch && (
             <select
-              className="py-2 px-3 rounded bg-gray-900 text-white border-none -ml-9 md:ml-0"
+              className="px-3 py-2 md:px-5 md:py-2 rounded-full  bg-gray-900 text-white border-none -ml-9 md:ml-0"
               onChange={handleLanguageChange}
             >
               {SUPPORTED_LANGUAGES.map((lang) => (
@@ -83,7 +83,7 @@ const Header = () => {
           )}
           <button
             onClick={handleGptSearch}
-            className="py-2 px-3 rounded-md bg-orange-200 font-bold "
+            className="py-2 px-3 rounded-full bg-orange-200 font-bold "
           >
             {showGptSearch ? "Homepage" : "GPT Search"}
           </button>
