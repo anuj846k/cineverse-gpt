@@ -5,6 +5,7 @@ import MovieList from "./MovieList";
 const GptMovieSuggestion = () => {
   const { movieName, movieResults } = useSelector((store) => store.gpt);
   if (!movieName) return null;
+  console.log(movieResults);
 
   return (
     <div className="bg-gray-900 p-6 m-1 md:m-4 rounded-lg shadow-lg ring-1">
