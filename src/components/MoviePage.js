@@ -1,10 +1,8 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Api_options, IMG_CDN_URL } from "../utils/constant";
-import { useParams } from "react-router-dom";
-// import VideoBackground from "./VideoBackground";
+import { useParams, Link } from "react-router-dom";
 import { MdOutlineStar } from "react-icons/md";
-import { Link } from "react-router-dom";
 import { IoMdHome } from "react-icons/io";
 import { addMovieInfo, addTrailer, deleteMovieInfo } from "../utils/movieInfoSlice";
 
@@ -16,9 +14,9 @@ const MoviePage = () => {
   const trailer = useSelector((store) => store.movieInfo.trailer);
 
   useEffect(() => {
-    const fetchTrailer = async (movieId) => {
+    const fetchTrailer = async () => {
       const data = await fetch(
-        `https://api.themoviedb.org/3/movie/${movieId}/videos?language=en-US`,
+        `https://api.themoviedb.org/3/movie/${id}/videos?language=en-US`,
         Api_options
       );
       const json = await data.json();
@@ -28,35 +26,41 @@ const MoviePage = () => {
       );
       dispatch(addTrailer(trailerVideos[0] || json.results[0]));
     };
+
     const fetchData = async () => {
       const data = await fetch(
-        'https://api.themoviedb.org/3/movie/' + movieId + '?language=en-US',
+        'https://api.themoviedb.org/3/movie/'+ movieId  +'?language=en-US',
         Api_options
       );
       const json = await data.json();
       dispatch(addMovieInfo(json));
     };
+
     fetchTrailer();
     fetchData();
+
     return () => {
       dispatch(deleteMovieInfo());
     };
   }, []);
 
-  if (!movieData) {
-    return <div className="text-white">Loading...</div>;
-  }
-
-  const {
-    original_title,
-    vote_average,
-    overview,
-    poster_path,
-  } = movieData;
+  if (movieData) {
+    const {
+      original_title,
+      budget,
+      revenue,
+      runtime,
+      vote_average,
+      vote_count,
+      overview,
+      genres,
+      status,
+      poster_path,
+      release_date,
+    } = movieData;
 
   return (
-    movieData &&(
-    <div className="flex flex-col md:flex-row justify-between h-full p-6 bg-gray-900 text-white gap-6">
+    movieData && (<div className="flex flex-col md:flex-row justify-between h-full p-6 bg-gray-900 text-white gap-6">
       <div className="md:w-[30%] w-full">
         <img
           src={IMG_CDN_URL + poster_path}
@@ -84,16 +88,16 @@ const MoviePage = () => {
           </Link>
         </div>
         <div className="border border-gray-700 p-4 bg-gray-800 shadow-lg rounded-3xl mb-6">
-        {trailer && (
-              <iframe
-                className="w-full md:w-10/12 aspect-video mx-auto pb-10"
-                src={'https://www.youtube.com/embed/' + trailer.key}
-                title="YouTube video player"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                referrerPolicy="strict-origin-when-cross-origin"
-                allowFullScreen
-              ></iframe>
-            )}
+          {trailer && (
+            <iframe
+              className="w-full md:w-10/12 aspect-video mx-auto pb-10"
+              src={'https://www.youtube.com/embed/' + trailer.key}
+              title="YouTube video player"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              referrerPolicy="strict-origin-when-cross-origin"
+              allowFullScreen
+            ></iframe>
+          )}
         </div>
         <div className="bg-blue-900 p-4 rounded-md">
           <h2 className="p-4 text-3xl rounded-md">Description</h2>
@@ -103,5 +107,6 @@ const MoviePage = () => {
     </div>
   ));
 };
+}
 
 export default MoviePage;

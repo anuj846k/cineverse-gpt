@@ -4,7 +4,6 @@ import {
   IoIosArrowDropleftCircle,
   IoIosArrowDroprightCircle,
 } from "react-icons/io";
-import { Link } from "react-router-dom";
 
 const MovieList = ({ title, movies }) => {
   const scrollContainerRef = useRef(null);
@@ -47,7 +46,7 @@ const MovieList = ({ title, movies }) => {
           <div className="flex space-x-4">
             {Array.isArray(movies) &&
               movies.map((movie) => (
-                  <MovieCard key={movie.id} movie={movie} posterPath={movie.poster_path} />
+                  <MovieCard key={movie.id} movie={movie} posterPath={movie.poster_path} id={movie.id} />
               ))}
           </div>
         </div>
