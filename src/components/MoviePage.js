@@ -44,6 +44,8 @@ const MoviePage = () => {
     };
   }, []);
 
+  console.log(movieData);
+
   if (movieData) {
     const {
       original_title,
@@ -90,7 +92,7 @@ const MoviePage = () => {
         <div className="border border-gray-700 p-4 bg-gray-800 shadow-lg rounded-3xl mb-6">
           {trailer && (
             <iframe
-              className="w-full md:w-10/12 aspect-video mx-auto pb-10"
+              className="w-full rounded-2xl aspect-video mx-auto "
               src={'https://www.youtube.com/embed/' + trailer.key}
               title="YouTube video player"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
