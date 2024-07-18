@@ -1,5 +1,5 @@
 export const User_Avatar =
-  "https://avatars.githubusercontent.com/u/136173245?v=4";
+  "https://occ-0-2159-3647.1.nflxso.net/dnm/api/v6/vN7bi_My87NPKvsBoib006Llxzg/AAAABUMx6z-7bB7tyN-OZXt6i8BXuZHN5EWBr7MQy7ilhubrpI2yOofVtT-QmoO6VJt7I1ewosmuQa29BGFfOOVcJxdKx1sT-co.png?r=201";
 //change it later
 
 export const Api_options = {

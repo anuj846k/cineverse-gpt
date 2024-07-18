@@ -10,7 +10,7 @@ import { getAuth } from "firebase/auth";
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
   apiKey: "AIzaSyC1nnM_tHP4y2Qe7xeOjJbX0AbLCuurB6A",
-  authDomain: "cineversegpt-a66af.firebaseapp.com",
+  authDomain: "cineversegpt-a66af.firebaseapp",
   projectId: "cineversegpt-a66af",
   storageBucket: "cineversegpt-a66af.appspot.com",
   messagingSenderId: "201349572852",
